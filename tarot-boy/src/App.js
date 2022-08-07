@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Reading from './Reading';
+import Reading from './components/Reading';
+import SingleCardReading from './components/SingleCardReading';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <h4>Home</h4>
         <h4>Single Card Reading</h4>
       </nav>
-      <Reading />
+      <SingleCardReading />
     </div>
   );
 }
