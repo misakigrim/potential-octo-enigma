@@ -1,16 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
 import Reading from './components/Reading';
-import SingleCardReading from './components/SingleCardReading';
+import SingleCardReading from './components/Spread';
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+
+// comment out later 
+function Hello() {
+  const params = useParams();
+  return (
+    <div>
+      <p>{params.greeting}, {params.name} </p>
+    </div>
+  )
+}
 
 function App() {
   return (
     <div>
-      <nav>
-        <h4>Home</h4>
-        <h4>Single Card Reading</h4>
-      </nav>
-      <SingleCardReading />
+      <BrowserRouter>
+        <Routes>
+          {/* <Route path='/' element={<HomePage />} /> */}
+          <Route path='/single' element={<Reading />}/>
+          <Route path='/:greeting/:name' element={<Hello />}/>
+          <Route path='*' element={<p>Not Found</p>}/>
+        </Routes>      
+      </BrowserRouter>
     </div>
   );
 }

@@ -54,19 +54,6 @@ function Reading() {
     const cardLink = `./cards/${name_short}.jpg`
     const cardLinkBack = './cards/cardback.png'
 
-    {for (const each of tarotData.cards){
-        if (name == each.name) {
-            const {arcana, suit, keywords} = each
-            const fortune = each.fortune_telling
-            const meanings_up = each.meanings.light
-            const meanings_rev = each.meanings.shadow
-            const archetype = each.Archetype
-            const element = each.Elemental
-            const myth = each['Mythical/Spiritual']
-            const questions = each['Questions to Ask']
-            }
-        }
-    }
     // full return 
     // return(
     //     <div className='full-card'>
@@ -86,15 +73,18 @@ function Reading() {
             onClick={reveal}
             />
             {tarotData.cards.map(each => {
-                if (name == each.name) {
+                if (name === each.name) {
                     const {arcana, suit, keywords} = each
                     const fortune = each.fortune_telling
+                    const fortuneAll = fortune.join('. ')
+                    const fortuneLastChar = fortuneAll.charAt(fortuneAll.length - 1)
                     const meanings_up = each.meanings.light
                     const meanings_rev = each.meanings.shadow
                     const archetype = each['Archetype']
                     const element = each.Elemental
                     const affirmation = each.Affirmation
                     const astrology = each.Astrology
+                    const numerology = each.Numerology
                     const myth = each['Mythical/Spiritual']
                     const questions = each['Questions to Ask']
                     return(
@@ -107,13 +97,21 @@ function Reading() {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerCloseButton />
-                                    <DrawerHeader>{name}</DrawerHeader>
+                                    <DrawerHeader>{(isUpright) ? `${name}` : `${name} (reversed)`}</DrawerHeader>
                                     <DrawerBody>
                                         <p><strong>{arcana} | {suit} {(archetype ? `| Archetype: ${archetype}` : '' )} {(element) ? `| Elemental: ${element}` : '' }  {(astrology) ? `| Astrology: ${astrology}` : ''}</strong></p>
                                         <p><em>{(affirmation) ? `~ Affirmation: ${affirmation} ~` : ''}</em></p>
-                                        <p>Keywords: {keywords.join(', ')}</p>
+                                        <p><strong>Keywords:</strong> {(keywords.length < 1) ? `${keywords}.` : `${keywords.join(', ')}.`}</p>
                                         <br/>
-                                        <p>Fortune Telling: {fortune.join('. ')}</p>
+                                        <p><strong>Fortune Telling:</strong> {(fortuneLastChar != '?') ? `${fortuneAll}.` : fortuneAll}</p>
+                                        <br/>
+                                        <p><strong>Meaning</strong> <em>{isUpright ? '(light)' : '(shadow)'}</em>: {(isUpright) ? meanings_up.join(' - ') : meanings_rev.join(' - ')}</p>
+                                        <br/>
+                                        <p><strong>{(numerology) ? `Numerology`: ''}</strong>{(numerology) ? `: ${numerology}.` : ''}</p>
+                                        {numerology ? <br/> : ''}
+                                        <p><strong>{(myth) ? `Mythical/Spiritual`: ''}</strong>{(myth) ? `: ${myth}` : ''}</p>
+                                        {myth ? <br/> : ''}
+                                        <p><strong>Questions to ask:</strong> {(questions.length < 1) ? `${questions}` : `${questions.join(' ')}`}</p>
                                     </DrawerBody>
                                     <DrawerFooter/>
                             </DrawerContent>
