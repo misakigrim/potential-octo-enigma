@@ -14,7 +14,7 @@ import {
 const tarotData = require('../tarot-images.json')
 
 
-function Reading() {
+function Reading(props) {
     const [currentCard, setCurrentCard] = useState({})
     const [isUpright, setIsUpright] = useState(true)
     const [isRevealed, setIsRevealed] = useState(false)
@@ -29,6 +29,7 @@ function Reading() {
     const reveal = () => {
         if (isRevealed === false) {
             setIsRevealed(true)
+            props.updateText()
             console.log('unrevealing...')
         } else {
             // -- set modal to display
@@ -71,6 +72,7 @@ function Reading() {
             src={(isRevealed) ? cardLink : cardLinkBack} 
             className={(isUpright) ? 'upright' : 'reversed'} 
             onClick={reveal}
+            style={{margin: '10px'}}
             />
             {tarotData.cards.map(each => {
                 if (name === each.name) {

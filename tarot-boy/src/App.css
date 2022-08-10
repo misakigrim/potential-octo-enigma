@@ -77,6 +77,18 @@
   width: 50%;
 }
 
-img {
+.upright, .reversed {
   border-radius: 5px;
+  height: 500px;
 }
+
+.tagline-fade {
+  animation: fadeinout 8s linear 1 forwards;
+}
+
+@keyframes fadeinout {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+

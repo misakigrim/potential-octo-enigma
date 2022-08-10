@@ -52,7 +52,7 @@ function Nav() {
                 <DrawerCloseButton />
                 <DrawerHeader>
                     <Link href='/'>
-                        <Image src={ colorMode === 'dark' ? LogoLight : LogoDark} alt= {colorMode === 'dark' ? 'altoma logo light' : 'altoma logo dark'} href='/'/>
+                        <Image src={ colorMode === 'dark' ? LogoLight : LogoDark} alt= {colorMode === 'dark' ? 'altoma logo light' : 'altoma logo dark'} href='/' m='-15px'/>
                     </Link>
                 </DrawerHeader>
 
