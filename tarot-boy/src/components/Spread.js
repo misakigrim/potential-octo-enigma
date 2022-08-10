@@ -1,12 +1,19 @@
 import Reading from "./Reading"
+import Nav from "./Nav"
+import { VStack, HStack } from '@chakra-ui/react'
 
 function Spread() {
     return(
-        <div className="spread">
-            <Reading />
-            <Reading />
-            <Reading />
-        </div>
+        <>
+        <Nav />
+        <VStack>
+            <HStack className="spread">
+                <Reading />
+                <Reading />
+                <Reading />
+            </HStack>
+        </VStack>
+        </>
     )
 }
 

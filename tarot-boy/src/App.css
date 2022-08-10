@@ -41,3 +41,42 @@
     transform: rotate(360deg);
   }
 }
+
+/* underline animation src = https://codepen.io/mehi/pen/MyWqPM */
+.menu-item{
+  position: relative;
+}
+
+.menu-item:after{
+  content: '';
+  position: absolute;
+  width: 0; height: 2px;
+  display: block;
+  margin-top: 1px;
+  left: 0;
+  background: rgb(159, 159, 159);
+  transition: width .2s ease;
+  -webkit-transition: width 1s ease;
+}
+ 
+.menu-item:hover:after{
+  width: 25%;
+  left: 0;
+  background: rgb(159, 159, 159);
+}
+
+.scr:hover:after{
+  width: 100%;
+}
+
+.tcs:hover:after{
+  width: 75%;
+}
+
+.ti:hover:after{
+  width: 50%;
+}
+
+img {
+  border-radius: 5px;
+}

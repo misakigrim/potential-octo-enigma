@@ -14,22 +14,32 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure,
-    Stack
+    Stack,
+    useColorMode,
+    Link,
+    Image
   } from '@chakra-ui/react';
+import '../App.css'
+import LogoDark from '../altoma_dark.png'
+import LogoLight from '../altoma_light.png'
   
-import { CgSun, CgMoon } from 'react-icons/cg';
+import { CgSun, CgMoon, CgMenu } from 'react-icons/cg';
 
 function Nav() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    
 
   return (
     <Flex>
         <Box>
-            <IconButton icon={<CgMoon />} isRound='true' size='lg' p={4} m={4} onClick={onOpen}/>
+            <IconButton icon={<CgMenu />} isRound='true' size='lg' p={4} m={4} onClick={onOpen}/>
         </Box>
         <Spacer />
         <Box>
-            <IconButton icon={<CgSun />} isRound='true' size='lg' p={4} m={4}/>
+            <IconButton icon={ colorMode === 'dark' ? <CgMoon /> : <CgSun />} isRound='true' size='lg' p={4} m={4} onClick={toggleColorMode}/>
         </Box>
         <Drawer
             isOpen={isOpen}
@@ -40,14 +50,18 @@ function Nav() {
             <DrawerOverlay />
             <DrawerContent>
                 <DrawerCloseButton />
-                <DrawerHeader>Insert Logo</DrawerHeader>
+                <DrawerHeader>
+                    <Link href='/'>
+                        <Image src={ colorMode === 'dark' ? LogoLight : LogoDark} alt= {colorMode === 'dark' ? 'altoma logo light' : 'altoma logo dark'} href='/'/>
+                    </Link>
+                </DrawerHeader>
 
                 <DrawerBody>
                     <Stack>
-                        <Text fontSize='3xl'>Single Card Reading</Text>
-                        <Text fontSize='3xl'>Three Card Spread</Text>
-                        <Text fontSize='3xl'>Tarot Index</Text>
-                        <Text fontSize='3xl'>About</Text>
+                        <Link href='/single' className='menu-item scr' fontSize='3xl' style={{textDecoration: 'none'}}>Single Card Reading</Link>
+                        <Link href='/spread' className='menu-item tcs' fontSize='3xl' style={{textDecoration: 'none'}}>Three Card Spread</Link>
+                        <Link href='/tarotindex' className='menu-item ti' fontSize='3xl' style={{textDecoration: 'none'}}>Tarot Index</Link>
+                        <Link href='/about' className='menu-item ab' fontSize='3xl' style={{textDecoration: 'none'}}>About</Link>
                     </Stack>
                 </DrawerBody>
 

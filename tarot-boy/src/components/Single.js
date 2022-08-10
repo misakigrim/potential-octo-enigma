@@ -1,12 +1,16 @@
 import React from 'react'
 import { VStack } from '@chakra-ui/react' 
 import Reading from './Reading'
+import Nav from './Nav'
 
 function Single() {
   return (
-    <VStack>
-        <Reading />
-    </VStack>
+    <>
+        <Nav />
+        <VStack>
+            <Reading />
+        </VStack>
+    </>
   )
 }
 

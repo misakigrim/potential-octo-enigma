@@ -97,13 +97,13 @@ function Reading() {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerCloseButton />
-                                    <DrawerHeader>{(isUpright) ? `${name}` : `${name} (reversed)`}</DrawerHeader>
+                                    <DrawerHeader fontSize='lg'>{(isUpright) ? `${name}` : `${name} (reversed)`}</DrawerHeader>
                                     <DrawerBody>
                                         <p><strong>{arcana} | {suit} {(archetype ? `| Archetype: ${archetype}` : '' )} {(element) ? `| Elemental: ${element}` : '' }  {(astrology) ? `| Astrology: ${astrology}` : ''}</strong></p>
                                         <p><em>{(affirmation) ? `~ Affirmation: ${affirmation} ~` : ''}</em></p>
                                         <p><strong>Keywords:</strong> {(keywords.length < 1) ? `${keywords}.` : `${keywords.join(', ')}.`}</p>
                                         <br/>
-                                        <p><strong>Fortune Telling:</strong> {(fortuneLastChar != '?') ? `${fortuneAll}.` : fortuneAll}</p>
+                                        <p><strong>Fortune Telling:</strong> {(fortuneLastChar !== '?') ? `${fortuneAll}.` : fortuneAll}</p>
                                         <br/>
                                         <p><strong>Meaning</strong> <em>{isUpright ? '(light)' : '(shadow)'}</em>: {(isUpright) ? meanings_up.join(' - ') : meanings_rev.join(' - ')}</p>
                                         <br/>
