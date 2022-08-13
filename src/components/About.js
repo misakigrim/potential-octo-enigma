@@ -19,7 +19,7 @@ function About() {
             <Link href='https://github.com/ekelen/tarot-api'>
                 <Text className='body-text' fontSize={24}>E Kelen's Tarot Card API on Github</Text>
             </Link>
-            <Link href='https://www.biddytarot.com/tarot-card-meanings/'>
+            <Link data-testid='link' href='https://www.biddytarot.com/tarot-card-meanings/'>
                 <Text className='body-text' fontSize={24}>Biddy Tarot</Text>
             </Link>
         </VStack>

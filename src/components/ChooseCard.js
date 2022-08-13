@@ -64,24 +64,22 @@ function ChooseCard() {
         cardLink = `../cards/wa${number}.jpg` 
     }
     
-    const cardData = tarotData.cards.map(card => {
+    const biddyResults = []
+    tarotData.cards.forEach(card => {
         if (card.suit === suit && card.number === numberOrder) {
             const name = card.name
-            biddyData.cards.map(select => {
+            const bdresults = biddyData.cards.forEach(select => {
                 if (select.name === name) {
                     const desc = select.b_desc
                     const rev = select.b_rev
                     const up = select.b_up
-                    console.log(desc, rev, up)
-                    return (
-                        <div>
-                        <p>hello</p>
-                        </div>
-                    )
+                    biddyResults.push(desc)
+                    biddyResults.push(up)
+                    biddyResults.push(rev)
                 }
             })
         }
-})
+    })
 
     return (
         <>
@@ -147,11 +145,40 @@ function ChooseCard() {
                     className={(isUpright) ? 'upright choose' : 'reversed choose'} 
                     >
                 </img>
-                {cardData}
+                <Accordion allowToggle>
+                    <AccordionItem>
+                        <h2>
+                        <AccordionButton>
+                            <Box w='850px' flex='1' textAlign='left' fontSize={30}>
+                            Card Description
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                        </h2>
+                        <AccordionPanel w='850px' pb={4} fontSize={20}>
+                        {biddyResults[0]}
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem>
+                        <h2>
+                        <AccordionButton>
+                            <Box w='850px' flex='1' textAlign='left' fontSize={30}>
+                            Interpretation
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                        </h2>
+                        <AccordionPanel w='850px' pb={4} fontSize={20}>
+                        {(isUpright) ? `${biddyResults[1]}` : `${biddyResults[2]}`}
+                        </AccordionPanel>
+                    </AccordionItem>
+                </Accordion>
                 <Text fontSize={20}>test</Text>
                 <Link href='/index'><Button>back to index</Button></Link>
             </VStack>
-   
+
+
         <Footer />
         </>
     )

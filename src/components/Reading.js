@@ -17,7 +17,6 @@ const biddyData = require('../tarot-images-biddy.json')
 
 function Reading(props) {
     const [currentCard, setCurrentCard] = useState({})
-    const [isUpright, setIsUpright] = useState(true)
     const [isRevealed, setIsRevealed] = useState(false)
 
     // for drawer
@@ -31,11 +30,15 @@ function Reading(props) {
         if (isRevealed === false) {
             setIsRevealed(true)
             props.updateText()
-            console.log('unrevealing...')
-        } else {
+            // console.log('unrevealing...')
+        } else if (name !== props.cardName) {
+            console.log(props.cardName)
+            console.log(name)
+            props.setName(name)
+        } else {    
             // -- set modal to display
             onOpen()
-            console.log('revealed + clicked')
+            console.log('modal')
         }
     }
 
@@ -44,7 +47,7 @@ function Reading(props) {
             const response = await axios.get(URL);
             setCurrentCard(response.data.cards[0]);
             const status = Math.random() >= 0.5
-            setIsUpright(status)
+            props.flip(status)
             // console.log(status)
             // console.log(response.data.cards)
             // console.log(tarotData)
@@ -56,22 +59,14 @@ function Reading(props) {
     const cardLink = `./cards/${name_short}.jpg`
     const cardLinkBack = './cards/cardback.png'
 
-    // full return 
-    // return(
-    //     <div className='full-card'>
-    //         <h1>{(isUpright) ? `${name}` : `${name} (reversed)`}</h1>
-    //         <img src={(isRevealed) ? cardLink : cardLinkBack} className={(isUpright) ? 'upright' : 'reversed'} onClick={reveal}/>
-    //         <p>Description: {desc}</p>
-    //         <p>{(isUpright) ? `Upright: ${meaning_up}` : `Reversed: ${meaning_rev}`}</p>
-    //     </div>
-    // )
+    props.setName(name)
 
     // card return only
     return (
         <div className='full-card'>
             <img 
             src={(isRevealed) ? cardLink : cardLinkBack} 
-            className={(isUpright) ? 'upright' : 'reversed'} 
+            className={(props.isUpright) ? 'upright' : 'reversed'} 
             onClick={reveal}
             style={{margin: '10px'}}
             />
@@ -100,7 +95,7 @@ function Reading(props) {
                             <DrawerOverlay />
                             <DrawerContent>
                                 <DrawerCloseButton />
-                                    <DrawerHeader fontSize='lg'>{(isUpright) ? `${name}` : `${name} (reversed)`}</DrawerHeader>
+                                    <DrawerHeader fontSize='lg'>{(props.isUpright) ? `${name}` : `${name} (reversed)`}</DrawerHeader>
                                     <DrawerBody>
                                         <p><strong>{arcana} | {suit} {(archetype ? `| Archetype: ${archetype}` : '' )} {(element) ? `| Elemental: ${element}` : '' }  {(astrology) ? `| Astrology: ${astrology}` : ''}</strong></p>
                                         <p><em>{(affirmation) ? `~ Affirmation: ${affirmation} ~` : ''}</em></p>
@@ -108,7 +103,7 @@ function Reading(props) {
                                         <br/>
                                         <p><strong>Fortune Telling:</strong> {(fortuneLastChar !== '?') ? `${fortuneAll}.` : fortuneAll}</p>
                                         <br/>
-                                        <p><strong>Meaning</strong> <em>{isUpright ? '(light)' : '(shadow)'}</em>: {(isUpright) ? meanings_up.join(' - ') : meanings_rev.join(' - ')}</p>
+                                        <p><strong>Meaning</strong> <em>{props.isUpright ? '(light)' : '(shadow)'}</em>: {(props.isUpright) ? meanings_up.join(' - ') : meanings_rev.join(' - ')}</p>
                                         <br/>
                                         <p><strong>{(numerology) ? `Numerology`: ''}</strong>{(numerology) ? `: ${numerology}.` : ''}</p>
                                         {numerology ? <br/> : ''}
