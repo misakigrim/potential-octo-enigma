@@ -12,6 +12,7 @@ import {
     useDisclosure
   } from '@chakra-ui/react'
 const tarotData = require('../tarot-images.json')
+const biddyData = require('../tarot-images-biddy.json')
 
 
 function Reading(props) {

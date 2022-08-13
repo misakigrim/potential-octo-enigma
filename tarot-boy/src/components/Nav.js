@@ -60,7 +60,7 @@ function Nav() {
                     <Stack>
                         <Link href='/single' className='menu-item scr' fontSize='3xl' style={{textDecoration: 'none'}}>Single Card Reading</Link>
                         <Link href='/spread' className='menu-item tcs' fontSize='3xl' style={{textDecoration: 'none'}}>Three Card Spread</Link>
-                        <Link href='/tarotindex' className='menu-item ti' fontSize='3xl' style={{textDecoration: 'none'}}>Tarot Index</Link>
+                        <Link href='/index' className='menu-item ti' fontSize='3xl' style={{textDecoration: 'none'}}>Tarot Index</Link>
                         <Link href='/about' className='menu-item ab' fontSize='3xl' style={{textDecoration: 'none'}}>About</Link>
                     </Stack>
                 </DrawerBody>

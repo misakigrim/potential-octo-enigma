@@ -2,17 +2,10 @@ import './App.css';
 import Single from './components/Single';
 import Spread from './components/Spread';
 import HomePage from './components/HomePage'
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
-
-// comment out later 
-function Hello() {
-  const params = useParams();
-  return (
-    <div>
-      <p>{params.greeting}, {params.name} </p>
-    </div>
-  )
-}
+import About from './components/About';
+import TarotIndex from './components/TarotIndex';
+import ChooseCard from './components/ChooseCard';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -22,7 +15,9 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/single' element={<Single />}/>
           <Route path='/spread' element={<Spread />}/>
-          <Route path='/:greeting/:name' element={<Hello />}/>
+          <Route path='/about' element={<About />}/>
+          <Route path='/index' element={<TarotIndex />}/>
+          <Route path='/:suit/:number' element={<ChooseCard />}/>
           <Route path='*' element={<p>Not Found</p>}/>
         </Routes>      
       </BrowserRouter>

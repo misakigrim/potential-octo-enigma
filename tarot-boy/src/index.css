@@ -15,3 +15,7 @@ code {
 .reversed {
   transform: rotate(180deg);
 }
+
+choose {
+  height: 600px;
+}
